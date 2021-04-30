@@ -1,21 +1,34 @@
-package com.bosch.sast.sudoku.validator.sudoku;
+package com.bosch.sast.sudoku.validator.model;
 
-import com.bosch.sast.sudoku.validator.Constants;
+import javax.persistence.*;
 import java.util.List;
 
+/**
+ * As JPA doesn't easily let us save the 2d arrays, the sudoku
+ * board will be saved as a simple list.
+ * A little bit of arithmetic will be needed to make it work
+ */
+
+@Entity
 public class Board {
 
-  private int[][] board;
+  @Id
+  @GeneratedValue(strategy= GenerationType.AUTO)
+  private Long id;
 
-  public Board() {
-    this.board = new int[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
-  }
+  @ElementCollection
+  private List<Integer> board;
 
-  public int[][] getBoard() {
+
+  public List<Integer> getBoard() {
     return board;
   }
 
   public void setBoard(int[][] board) {
+    // add a mapper
+  }
+
+  public void setBoard(List<Integer> board) {
     this.board = board;
   }
 
