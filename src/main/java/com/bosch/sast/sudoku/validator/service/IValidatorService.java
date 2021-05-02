@@ -7,6 +7,8 @@ public interface IValidatorService {
 
   public boolean isValidSudoku(Long boardId);
 
+  public boolean isValidSudoku(int[][] board);
+
   Board saveBoard(BoardDTO boardDTO);
 
   BoardDTO getBoard(Long id);
