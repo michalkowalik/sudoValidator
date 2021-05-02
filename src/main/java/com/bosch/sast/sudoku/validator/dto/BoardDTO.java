@@ -7,7 +7,7 @@ import java.util.List;
 public class BoardDTO {
 
   private Long id;
-  private List<List<Integer>> board;
+  private int[][] board;
 
   public int[][] getBoardConverted(List<Integer> board) {
     // ... fill the gaps
@@ -16,11 +16,11 @@ public class BoardDTO {
     return new int[BOARD_SIZE][BOARD_SIZE];
   }
 
-  public List<List<Integer>> getBoard() {
+  public int[][] getBoard() {
     return board;
   }
 
-  public BoardDTO setBoard(List<List<Integer>> board) {
+  public BoardDTO setBoard(int[][] board) {
     this.board = board;
     return this;
   }

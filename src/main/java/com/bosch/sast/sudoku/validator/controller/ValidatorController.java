@@ -1,14 +1,20 @@
 package com.bosch.sast.sudoku.validator.controller;
 
 import com.bosch.sast.sudoku.validator.dto.BoardDTO;
-import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.bosch.sast.sudoku.validator.model.Board;
+import com.bosch.sast.sudoku.validator.service.ValidatorService;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ValidatorController implements IValidatorController {
+
+  ValidatorService validatorService;
+
+  public ValidatorController(ValidatorService validatorService) {
+    this.validatorService = validatorService;
+  }
 
   @Override
   public String sayHello() {
@@ -18,9 +24,16 @@ public class ValidatorController implements IValidatorController {
   @Override
   public BoardDTO getBoard(@PathVariable("id") Long id) {
     // ... fill the gaps
-    return new BoardDTO()
-        .setBoard(List.of(
-            List.of(1,2,3,4,5), List.of(0,0,0,0)))
-        .setId(1L);
+    return validatorService.getBoard(id);
+  }
+
+  @Override
+  public boolean validateBoard(Long id) {
+    return validatorService.isValidSudoku(id);
+  }
+
+  @Override
+  public Board addBoard(@RequestBody BoardDTO boardDTO) {
+    return validatorService.saveBoard(boardDTO);
   }
 }

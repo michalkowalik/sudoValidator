@@ -24,13 +24,12 @@ public class Board {
     return board;
   }
 
-  public void setBoard(int[][] board) {
-    // add a mapper
-  }
 
   public void setBoard(List<Integer> board) {
     this.board = board;
   }
+
+
 
   public List<Integer> getRow(int row) {
     return null;
@@ -62,5 +61,17 @@ public class Board {
 
   public void setRow(int row, List<Integer> data) {
     // NOOP
+  }
+
+  public void setValue(int row, int column) {
+    // NOOP
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 }
