@@ -2,7 +2,7 @@ package com.bosch.sast.sudoku.validator.controller;
 
 import com.bosch.sast.sudoku.validator.dto.BoardDTO;
 import com.bosch.sast.sudoku.validator.model.Board;
-import com.bosch.sast.sudoku.validator.service.ValidatorService;
+import com.bosch.sast.sudoku.validator.service.IValidatorService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,15 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ValidatorController implements IValidatorController {
 
-  ValidatorService validatorService;
+  private final IValidatorService validatorService;
 
-  public ValidatorController(ValidatorService validatorService) {
+  public ValidatorController(IValidatorService validatorService) {
     this.validatorService = validatorService;
-  }
-
-  @Override
-  public String sayHello() {
-    return "Hello World";
   }
 
   @Override

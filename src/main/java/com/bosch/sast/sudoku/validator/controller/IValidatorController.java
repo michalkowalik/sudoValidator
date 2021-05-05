@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 public interface IValidatorController {
 
-  @GetMapping("/sayhello")
-  String sayHello();
-
   @GetMapping("/board/{id}")
   BoardDTO getBoard(@PathVariable("id") Long id);
 

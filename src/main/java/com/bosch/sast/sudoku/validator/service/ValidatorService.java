@@ -49,15 +49,26 @@ public class ValidatorService implements IValidatorService {
     return sudokuMapper.mapToDTO(board);
   }
 
-  // get 9 sub-arrays, pack them into a 1D arrays & validate the vectors
+  // get 9 sub-arrays, pack them into vectors & validate them
   private boolean validateQuadrants(int[][] board) {
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        int[] vector = new int[9];
+        for (int k = 0; k < 9; k++) {
+          vector[k] = board[i * 3 + k / 3][j * 3 + k % 3];
+        }
+        if (!validateVector(vector)) {
+          return false;
+        }
+      }
+    }
     return true;
   }
 
   private boolean validateColumns(int[][] board) {
     int[][] pivotedArray = new int[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
     for (int i = 0; i < Constants.BOARD_SIZE; i++) {
-      for (int j =0; j < Constants.BOARD_SIZE; j++) {
+      for (int j = 0; j < Constants.BOARD_SIZE; j++) {
         pivotedArray[j][i] = board[i][j];
       }
     }
@@ -77,8 +88,9 @@ public class ValidatorService implements IValidatorService {
 
     AtomicBoolean isValid = new AtomicBoolean(true);
     groupedDigits.forEach((k, v) -> {
-      if ((k != 0) && (v.size() > 1))
+      if ((k != 0) && (v.size() > 1)) {
         isValid.set(false);
+      }
     });
     return isValid.get();
   }

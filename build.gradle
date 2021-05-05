@@ -23,9 +23,13 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.spockframework:spock-core:1.2-groovy-2.4'
 	testImplementation 'org.spockframework:spock-spring:1.2-groovy-2.4'
 }
 
+// can spock cohabitate with junit?
+/*
 test {
 	useJUnitPlatform()
 }
+*/
