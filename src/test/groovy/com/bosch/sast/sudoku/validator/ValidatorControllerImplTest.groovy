@@ -1,15 +1,15 @@
 package com.bosch.sast.sudoku.validator
 
-import com.bosch.sast.sudoku.validator.controller.IValidatorController
+import com.bosch.sast.sudoku.validator.controller.ValidatorController
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest
-class ValidatorControllerTest extends Specification {
+class ValidatorControllerImplTest extends Specification {
 
-    @Autowired
-    private IValidatorController validatorController;
+    @Autowired (required = false)
+    private ValidatorController validatorController
 
 
     def "The application context is created"() {
