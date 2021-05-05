@@ -4,9 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * As JPA doesn't easily let us save the 2d arrays, the sudoku
+ * As JPA/H2 doesn't easily let us save the 2d arrays, the sudoku
  * board will be saved as a simple list.
- * A little bit of arithmetic will be needed to make it work
  */
 
 @Entity
@@ -34,10 +33,6 @@ public class Board {
 
   public void setBoard(List<Integer> board) {
     this.board = board;
-  }
-
-  public void setValue(int row, int column) {
-    // NOOP
   }
 
 }
