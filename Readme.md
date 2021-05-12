@@ -1,5 +1,4 @@
 # Sudoku Validator
-
 ## The goal of the program
 The goal of a program is to validate a sudoku game passed to it via the REST interface.
 Information about sudoku: https://en.wikipedia.org/wiki/Sudoku
