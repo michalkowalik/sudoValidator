@@ -33,9 +33,7 @@ class ValidatorServiceImplTest extends Specification {
              [0, 0, 0, 0, 0, 0, 0, 0, 0],
              [9, 0, 0, 0, 0, 0, 0, 0, 0]]
 
-
     private ValidatorService validatorService
-
 
     private SudokuRepository sudokuRepository = Mock(SudokuRepository)
     private SudokuMapper sudokuMapper = Mock(SudokuMapper)
@@ -53,6 +51,5 @@ class ValidatorServiceImplTest extends Specification {
         board         | isValid
         correctSudoku | true
         invalidSudoku | false
-
     }
 }
