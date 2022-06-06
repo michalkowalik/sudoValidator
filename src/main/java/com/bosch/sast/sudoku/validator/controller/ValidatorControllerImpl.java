@@ -3,11 +3,14 @@ package com.bosch.sast.sudoku.validator.controller;
 import com.bosch.sast.sudoku.validator.dto.BoardDTO;
 import com.bosch.sast.sudoku.validator.model.Board;
 import com.bosch.sast.sudoku.validator.service.ValidatorService;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class ValidatorControllerImpl implements ValidatorController {
 
   private final ValidatorService validatorService;

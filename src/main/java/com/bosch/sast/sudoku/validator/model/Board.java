@@ -19,6 +19,10 @@ public class Board {
   @ElementCollection
   private List<Integer> board;
 
+  @ManyToOne
+  @JoinColumn(name="user_id", nullable = false)
+  private User user;
+
 
   public Long getId() {
     return id;
