@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
+import spock.lang.Unroll
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
@@ -42,39 +43,26 @@ class ValidatorISpec extends Specification {
         result.andExpect(jsonPath('$.id').value('1'))
     }
 
-    def "Upload and validate uploaded board"() {
+    @Unroll
+    def "Upload and validate #isValid board"() {
         given:
         BoardDTO dto = new BoardDTO()
-                .setBoard(TestConstants.correctSudoku)
-                .setId(1)
+                .setBoard(sudokuBoard)
+                .setId(id)
         mockMvc.perform(post('/board')
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(dto)))
         when:
-        def result = mockMvc.perform(get('/board/1/isvalid')).andDo(print())
+        def result = mockMvc.perform(get('/board/{id}/isvalid', id)).andDo(print())
         then:
         result.andExpect(status().isOk())
 
         and:
-        result.andExpect(content().string("true"))
+        result.andExpect(content().string(output))
+
+        where:
+        sudokuBoard                 | id | isValid   | output
+        TestConstants.correctSudoku | 1  | "valid"   | "true"
+        TestConstants.invalidSudoku | 2  | "invalid" | "false"
     }
-
-    def "Upload and validate invalid board"() {
-        given:
-        BoardDTO dto = new BoardDTO()
-                .setBoard(TestConstants.invalidSudoku)
-                .setId(1)
-        mockMvc.perform(post('/board')
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(dto)))
-        when:
-        def result = mockMvc.perform(get('/board/1/isvalid')).andDo(print())
-        then:
-        result.andExpect(status().isOk())
-
-        and:
-        result.andExpect(content().string("false"))
-    }
-
-
 }
