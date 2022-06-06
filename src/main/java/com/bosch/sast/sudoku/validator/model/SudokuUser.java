@@ -8,13 +8,14 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class User {
+public class SudokuUser {
 
   @Id
-  private UUID id =java.util.UUID.randomUUID();
+  private final UUID id =java.util.UUID.randomUUID();
 
   private String name;
   private String email;
+
 
   @OneToMany(mappedBy = "user")
   private Set<Board> boards;
